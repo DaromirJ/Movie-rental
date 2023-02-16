@@ -10,36 +10,43 @@ namespace Movie_rental
         static void Main(string[] args)
         {
             MenuActionService actionService = new MenuActionService();
-            actionService = Initialize(actionService);
-            var mainMenu = actionService.GetMenuActionsByMenuName("Main");
-            for(int i = 0; i < mainMenu.Count; i++)
-            {
-                Console.WriteLine($"{mainMenu[i].Id}. {mainMenu[i].Name}");
-            }
-            var operation = Console.ReadKey();
             MovieService movieService = new MovieService();
-            switch (operation.KeyChar)
-            {
-                case '1':
-                    var keyInfo = movieService.AddNewMovieView(actionService);
-                    var id = movieService.AddNewMovie(keyInfo.KeyChar);
-                    break;
-                case '2':
-                    var removeId = movieService.RemoveMovieView();
-                    movieService.RemoveMovie(removeId);
-                    break;
-                case '3':
-                    break;
-                case '4':
-                    break;
-
-                default:
-                    Console.WriteLine("Action you entered does not exist");
-                    break;
-            }
+            actionService = Initialize(actionService);
 
             Console.WriteLine("Welcome to Movie rental app");
-            Console.WriteLine("Please let me know what you wont to do");
+            while(true)
+            {
+                Console.WriteLine("Please let me know what you want to do");
+
+                var mainMenu = actionService.GetMenuActionsByMenuName("Main");
+                for(int i = 0; i < mainMenu.Count; i++)
+                {
+                    Console.WriteLine($"{mainMenu[i].Id}. {mainMenu[i].Name}");
+                }
+                var operation = Console.ReadKey();
+                switch (operation.KeyChar)
+                {
+                    case '1':
+                        var keyInfo = movieService.AddNewMovieView(actionService);
+                        var id = movieService.AddNewMovie(keyInfo.KeyChar);
+                        break;
+                    case '2':
+                        var removeId = movieService.RemoveMovieView();
+                        movieService.RemoveMovie(removeId);
+                        break;
+                    case '3':
+                        var detailId = movieService.MovieDetailSelectionView();
+                        movieService.MovieDetailView(detailId);
+
+                        break;
+                    case '4':
+                        break;
+
+                    default:
+                        Console.WriteLine("Action you entered does not exist");
+                        break;
+                }
+            }
         }
 
         private static MenuActionService Initialize(MenuActionService actionService)

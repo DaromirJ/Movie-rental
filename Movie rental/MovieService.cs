@@ -39,7 +39,7 @@ namespace Movie_rental
             Console.WriteLine("Please enter name for new movie:");
             var name = Console.ReadLine();
 
-            //movie.Id = movieId;
+            movie.Id = movieId;
             movie.Name = name;
 
             Movies.Add(movie);
@@ -68,6 +68,32 @@ namespace Movie_rental
                 }
             }
             Movies.Remove(filmToRemove);
+        }
+
+        public void MovieDetailView(int detailId)
+        {
+            Movie filmToShow = new Movie();
+            foreach (var movie in Movies)
+            {
+                if (movie.Id == detailId)
+                {
+                    filmToShow = movie;
+                    break;
+                }
+            }
+            Console.WriteLine($"Movie id: {filmToShow.Id}");
+            Console.WriteLine($"Movie name: {filmToShow.Name}");
+            Console.WriteLine($"Movie type id: {filmToShow.TypeId}");
+        }
+
+        public int MovieDetailSelectionView()
+        {
+            Console.WriteLine("Please enter id for movie you wont to show");
+            var movieId = Console.ReadKey();
+            int id;
+            Int32.TryParse(movieId.KeyChar.ToString(), out id);
+            return id;
+
         }
     }
 }
