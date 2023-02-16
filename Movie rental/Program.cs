@@ -40,6 +40,8 @@ namespace Movie_rental
 
                         break;
                     case '4':
+                        var typeId = movieService.MovieTypeSelectionView();
+                        movieService.MovieByTypeIdView(typeId);
                         break;
 
                     default:

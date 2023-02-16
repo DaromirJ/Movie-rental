@@ -92,8 +92,33 @@ namespace Movie_rental
             var movieId = Console.ReadKey();
             int id;
             Int32.TryParse(movieId.KeyChar.ToString(), out id);
+
             return id;
 
+        }
+
+        public int MovieTypeSelectionView()
+        {
+            Console.WriteLine("Please enter Type Id for movie type you wont to show");
+            var movieId = Console.ReadKey();
+            int id;
+            Int32.TryParse(movieId.KeyChar.ToString(), out id);
+
+            return id;
+        }
+
+        public void MovieByTypeIdView(int typeId)
+        {
+            List<Movie> toShow = new List<Movie>();
+            foreach (var movie in Movies)
+            {
+                if (movie.TypeId == typeId)
+                {
+                    toShow.Add(movie);
+                }
+            }
+
+            Console.WriteLine(toShow.ToStringTable(new[] { "Id", "Name"}, async => async.Id, async => async.Name));
         }
     }
 }
