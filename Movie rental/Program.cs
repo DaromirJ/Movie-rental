@@ -48,11 +48,11 @@ namespace Movie_rental
             actionService.AddNewAction(2, "Remove movie", "Main");
             actionService.AddNewAction(3, "Show details", "Main");
             actionService.AddNewAction(4, "List of movies", "Main");
-            return actionService;
 
-            actionService.AddNewAction(2, "Sensational", "AddNewMovieMenu");
+            actionService.AddNewAction(1, "Sensational", "AddNewMovieMenu");
+            actionService.AddNewAction(2, "Casual movie", "AddNewMovieMenu");
             actionService.AddNewAction(3, "Adventurous", "AddNewMovieMenu");
-            actionService.AddNewAction(4, "Musical", "MaAddNewMovieMenuin");
+            actionService.AddNewAction(4, "Musical", "AddNewMovieMenu");
             return actionService;
 
         }
